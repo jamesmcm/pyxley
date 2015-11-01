@@ -168,3 +168,7 @@ img {
     display: inline-block;
     vertical-align: middle;
 }
+
+.tab-content {
+    margin-left: 240px;
+}

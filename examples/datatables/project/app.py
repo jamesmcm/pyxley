@@ -23,6 +23,7 @@ TITLE = "Pyxley"
 
 scripts = [
     "./bower_components/jquery/dist/jquery.min.js",
+    "./bower_components/jquery-ui/jquery-ui.min.js",
     "./bower_components/datatables/media/js/jquery.dataTables.js",
     "./dataTables.fixedColumns.js",
     "./bower_components/d3/d3.min.js",
@@ -30,13 +31,18 @@ scripts = [
     "./bower_components/react/react.js",
     "./bower_components/react-bootstrap/react-bootstrap.min.js",
     "./conf_int.js",
-    "./bower_components/pyxley/build/pyxley.js"
+    "./bower_components/pyxley/build/pyxley.js",
+    "./bower_components/admin-lte/dist/js/app.min.js",
+    "./tabs.js"
     ]
 
 css = [
     "./bower_components/bootstrap/dist/css/bootstrap.min.css",
+    "./bower_components/admin-lte/dist/css/AdminLTE.min.css",
+    "./bower_components/admin-lte/dist/css/skins/skin-blue.min.css",
     "./bower_components/datatables/media/css/jquery.dataTables.min.css",
     "./css/main.css"
+    #"./css/shinydashboard.css"
 ]
 
 df = pd.DataFrame(json.load(open("./static/data.json", "r")))
@@ -99,7 +105,20 @@ ui = SimpleComponent(
     tb.params
 )
 
+sb2=SelectButton("SelectButton", ["Item1","Item2"], "slide2" ,tb.params)
+ui2 = SimpleComponent(
+    "SelectButton",
+    "./static/bower_components/pyxley/build/pyxley.js",
+    "slide2",
+    sb2.params
+)
+
+#ui2.add_filter(sb2)
+
 sb = ui.render("./static/layout.js")
+sb1 = ui2.render("./static/layout2.js")
+#sb2s = sb2.register_route(app)
+#sb2s = sb2.to_js()
 
 @app.route('/test', methods=["GET"])
 def testtest():
@@ -109,7 +128,8 @@ def testtest():
 @app.route('/index', methods=["GET"])
 def index():
     _scripts = [
-        "./layout.js"
+        "./layout.js",
+        "./layout2.js"
         ]
     return render_template('index.html',
         title=TITLE,

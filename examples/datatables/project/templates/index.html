@@ -12,17 +12,43 @@
 
   </head>
 
-  <body>
+  <body class="hold-transition skin-blue sidebar-mini">
 
     {% for s in base_scripts %}
     <script src={{ url_for('static', filename=s) }}></script>
     {% endfor %}
+<div class="main-sidebar">
+  <!-- Inner sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <!-- <li class="header">HEADER</li> -->
+      <!-- Optionally, you can add icons to the links -->
+      <li class="active"><a href="#content1"><span>Link</span></a></li>
+      <li><a href="#content2"><span>Another Link</span></a></li>
+      <!-- <li class="treeview"> -->
+      <!--   <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a> -->
+      <!--   <ul class="treeview-menu"> -->
+      <!--     <li><a href="#">Link in level 2</a></li> -->
+      <!--     <li><a href="#">Link in level 2</a></li> -->
+      <!--   </ul> -->
+      <!-- </li> -->
+    </ul><!-- /.sidebar-menu -->
+
+  </div><!-- /.sidebar -->
+</div><!-- /.main-sidebar -->
 
     <div id="navbarid"></div>
-
+    <div class="tab-content" id="content1">
     <div class="container">
           <div id="component_id"></div>
     </div>
+    </div>
+     <div class="tab-content" id="content2">
+    <div class="container">
+          <div id="slide2"></div>
+    </div>
+	  </div>
 
     {% for s in page_scripts %}
     <script src={{ url_for('static', filename=s) }}></script>
